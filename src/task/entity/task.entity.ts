@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('tasks')
@@ -17,8 +16,7 @@ export class Task extends BaseEntity {
   description: string;
 
   @Column({
-    type: 'varchar',
     default: 'todo',
   })
-  status: string;
+  status: 'todo' | 'complete';
 }
