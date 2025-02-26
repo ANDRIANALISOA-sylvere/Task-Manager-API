@@ -14,6 +14,14 @@ export class UserService {
   async register(user: CreateUserDto): Promise<User> {
     const hashedPassword = await bcrypt.hash(user.password, 12);
     user.password = hashedPassword;
-    return await this.userRepository.save(user);
+    return this.userRepository.save(user);
+  }
+
+  async findUserByEmail(email: string): Promise<User | null> {
+    return this.userRepository.findOne({ where: { email } });
+  }
+
+  async findUserById(id: number): Promise<User | null> {
+    return this.userRepository.findOne({ where: { id } });
   }
 }
