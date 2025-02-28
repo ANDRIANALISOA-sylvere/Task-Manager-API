@@ -19,13 +19,14 @@ export class Task extends BaseEntity {
 
   @Column({
     type: 'text',
+    nullable: true,
   })
   description: string;
 
   @Column({
     default: 'todo',
   })
-  status: 'todo' | 'in_pregress' | 'done';
+  status: 'todo' | 'in_progress' | 'done';
 
   @ManyToOne(() => User, (user) => user.tasks)
   user: User;
