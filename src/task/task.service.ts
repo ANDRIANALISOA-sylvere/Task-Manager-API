@@ -15,6 +15,23 @@ export class TaskService {
     private userRepository: Repository<User>,
   ) {}
 
+  async getAll(): Promise<Task[]> {
+    return await this.taskRepository.find({
+      relations: ['user'],
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        status: true,
+        user: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+    });
+  }
+
   async create(createTaskDto: CreateTaskDto): Promise<Task> {
     const { title, description, status, userId } = createTaskDto;
 
