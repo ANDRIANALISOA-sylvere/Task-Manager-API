@@ -32,4 +32,12 @@ export class TaskService {
     });
     return this.taskRepository.save(task);
   }
+
+  async delete(id: number) {
+    const task = await this.taskRepository.findOne({ where: { id } });
+    if (!task) {
+      throw new NotFoundException('Task non trouvé');
+    }
+    return await this.taskRepository.delete(id);
+  }
 }
