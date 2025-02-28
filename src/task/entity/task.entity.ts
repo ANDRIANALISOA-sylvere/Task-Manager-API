@@ -18,5 +18,5 @@ export class Task extends BaseEntity {
   @Column({
     default: 'todo',
   })
-  status: 'todo' | 'complete';
+  status: 'todo' | 'in_pregress' | 'done';
 }
